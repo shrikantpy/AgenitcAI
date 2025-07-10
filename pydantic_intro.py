@@ -122,5 +122,19 @@ data = {"name": "Mathew",
 student = std_detail(**data)
 print(student)
 
+class User(BaseModel):
+    username: str = Field(..., description="Unique username for the user")
+    age: int = Field(default=18, description="User age, defaults to 18")
+    email: str = Field(default_factory=lambda: "user@example.com", description="Default email address")
+
+# Examples
+user1 = User(username="Darren")
+print(user1)  # username='Darren' age=18 email='user@example.com'
+
+user2 = User(username="Phill", age=34, email="phill@AILearn.com")
+print(user2)  # username="Phill" age=34 email="phill@AILearn.com"
+
+print(User.model_json_schema())
+
 
 
