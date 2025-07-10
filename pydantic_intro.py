@@ -83,6 +83,17 @@ class student_detail(BaseModel):
 student = student_detail(name="Ramesh", roll_num="A23", score={"maths": 96, "physics": 92, "chemestry": 93, "biology":95})
 print(student)
 
-# Below one will throw an error
+# Below one will throw an error during score validation
 # student = student_detail(name="Ramesh", roll_num="A23", score={"maths": 96, "physics": "Hello", "chemestry": 93, "biology":95})
 # print(student)
+
+
+# Below one will not throw an error during score validation because model takes care of automatic type casting.
+student = student_detail(name="Ramesh", roll_num="A23", score={"maths": 98, "physics": "97", "chemestry": 94, "biology":95})
+print(student)
+
+
+# Pydantic Fields: Customization and Constraints
+
+#The Field function in Pydantic enhances model fields beyond basic type hints by allowing you to specify validation rules,
+# default values, aliases, and more. Here's a comprehensive tutorial with examples.
