@@ -97,3 +97,30 @@ print(student)
 
 #The Field function in Pydantic enhances model fields beyond basic type hints by allowing you to specify validation rules,
 # default values, aliases, and more. Here's a comprehensive tutorial with examples.
+
+from pydantic import Field
+from typing import Annotated, List, Literal
+
+from enum import Enum
+
+class GradeEnum(str, Enum):
+    A = "A"
+    B = "B"
+    C = "C"
+    D = "D"
+    F = "F"
+
+class std_detail(BaseModel):
+    name: str=Field(max_length=30)
+    maths: int=Field(0, ge=0, le=100)
+    grade: GradeEnum
+
+data = {"name": "Mathew",
+        "maths":76,
+        "grade":"B"}
+
+student = std_detail(**data)
+print(student)
+
+
+
